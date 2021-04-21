@@ -19,7 +19,7 @@ clean_pip:
 	pip freeze | xargs pip uninstall -y
 
 test:
-	tox
+	pytest -n 4 -p no:cacheprovider
 
 package: clean_dist
 	python setup.py sdist
@@ -28,10 +28,7 @@ vulture:
 	vulture module/
 
 isort:
-	isort -rc .
-
-unused_imports:
-	importchecker .
+	isort .
 
 format: isort
 	black .
@@ -45,9 +42,5 @@ install_reqs:
 
 install_jupyter:
 	pip install jupyter
-	pip install jupyter_contrib_nbextensions
-	pip install jupyter_nbextensions_configurator
-	jupyter contrib nbextension install --user
-	jupyter nbextensions_configurator enable --user
-	pip install autopep8
-	pip install jupyterthemes
+
+reinstall_pip: clean_pip install_reqs

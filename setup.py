@@ -1,17 +1,13 @@
 import ast
 import re
-from os import environ
 from pathlib import Path
 
 from setuptools import find_packages, setup
 
-_PACKAGE_NAME = "python_template"
+_PACKAGE_NAME = "cv_stuff"
 
 BASE_DIR = Path(__file__).resolve().parent / _PACKAGE_NAME
 _VERSION_RE = re.compile(r"__version__\s+=\s+(?P<version>.*)")
-
-
-version = environ.get("CURRENT_VERSION", "SNAPSHOT")
 
 
 def get_version():
@@ -25,7 +21,7 @@ setup(
     name=_PACKAGE_NAME.replace("_", "-"),
     version=get_version(),
     author="Samuel Pedro",
-    description="Python Template",
+    description="Random Computer Vision Stuff",
     include_package_data=True,
     install_requires=[],
     data_files=[],
